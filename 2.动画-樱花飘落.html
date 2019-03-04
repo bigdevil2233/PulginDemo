@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+
+        }
+        .sakura01{
+            width:20px;
+            height:20px;
+            background-color: lightpink;
+            transform:translateX(100px) translateY(100px);
+            position:absolute;
+            border-radius: 20px 5px 20px 20px/20px 10px 20px 5px;
+
+            animation-duration: 3s;
+            animation-name: aniDemo01;
+            animation-direction: reverse;
+            animation-iteration-count: infinite;
+        }
+        @keyframes aniDemo01 {
+            from{
+                transform:translateX(150px) translateY(200px) rotate(60deg);
+            }
+            /*30%{*/
+                /*transform:translateX(110px) translateY(130px) rotate(20deg);*/
+
+            /*}*/
+            /*60%{*/
+                /*transform:translateX(120px) translateY(150px) rotate(35deg);*/
+            /*}*/
+            /*动画的最后一帧*/
+            to{
+
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sakura01"></div>
+    <script type="text/javascript">
+        var box=document.querySelector(".box");
+
+//        for(var i=0;i<20;i++){
+//            var obj=document.createElement("div");
+//        }
+
+        setInterval(function(){
+
+        },1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+        }
+        .box{
+            width:300px;
+            border:1px solid #dddddd;
+            margin:50px auto;
+            padding-bottom:50px;
+        }
+        .input-wrapper{
+            border:1px solid #dddddd;
+
+        }
+        .icon{
+            display:inline-block;
+            width:38px;
+            height:38px;
+            background:url("../img/1101/pwd-icons-new.png") no-repeat;
+            border-right:1px solid #dddddd;
+            /*vertical-align:middle;控制基线使元素居中并消除间隙*/
+            vertical-align:middle;
+        }
+        .icon-id{
+            background-position:0 0;
+        }
+        .icon-pwd{
+            background-position:-48px 0;
+        }
+        input:not([type=submit]){
+            outline:none;
+            border:none;
+        }
+        .userId{
+
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <form action="" method="get">
+        <div class="input-wrapper">
+            <i class="icon icon-id"></i>
+            <input type="text" id="userId">
+
+        </div>
+        <div class="input-wrapper">
+            <i class="icon icon-pwd"></i>
+            <input type="password" id="userPwd">
+
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

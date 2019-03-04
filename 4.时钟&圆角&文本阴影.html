@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+            list-style: none;
+            text-decoration: none;
+            background:black;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+            margin:20px auto;
+            background-color: white;
+            border-radius: 100px;
+            box-shadow:inset 0 0 70px;
+            position: relative;
+        }
+        #clockHead{
+            position:relative;
+            left:99px;
+            top:10px;
+        }
+        #clockHead li{
+            position:absolute;
+            transform-origin:1px 90px;
+            background-color: black;
+            width:2px;
+            height:6px;
+        }
+        #clockHead li:nth-child(5n+1){
+            height:12px;
+        }
+        #second{
+            position:absolute;
+            left:99px;
+            top:40px;
+            transform-origin:bottom;
+            width:2px;
+            height:60px;
+            background-color:red;
+        }
+        #minute{
+            position:absolute;
+            left:99px;
+            top:50px;
+            transform-origin:bottom;
+            width:2px;
+            height:50px;
+            background-color:black;
+        }
+        #hour{
+            position:absolute;
+            left:98px;
+            top:60px;
+            transform-origin:bottom;
+            width:4px;
+            height:40px;
+            background-color:black;
+        }
+        #clockTitle{
+            font-size:48px;
+            font-family:Arial;
+            font-weight: 900;
+            position:relative;
+            left:430px;
+            width:80px;
+            text-shadow:0 -10px 10px white;
+        }
+    </style>
+</head>
+<body>
+<div id="clockTitle">Title</div>
+
+<div class="box">
+    <ul id="clockHead">
+
+    </ul>
+    <div id="second"></div>
+    <div id="minute"></div>
+    <div id="hour"></div>
+</div>
+<script type="text/javascript">
+    window.onload=function(){
+        var clockHead=document.querySelector("#clockHead");
+        for(var i=0;i<60;i++){
+            var obj=document.createElement("li");
+            obj.style.transform="rotate("+i*6+"deg)";
+            clockHead.appendChild(obj);
+        }
+
+        var second=document.querySelector("#second");
+        var minute=document.querySelector("#minute");
+        var hour=document.querySelector("#hour");
+
+        setInterval(function(){
+            var currentDate=new Date();
+            var seconds=currentDate.getSeconds();
+            var minutes=currentDate.getMinutes();
+            minutes=minutes+(seconds/60);
+            var hours=currentDate.getHours();
+            hours=hours+(minutes/60);
+            second.style.transform="rotate("+seconds*6+"deg)";
+            minute.style.transform="rotate("+minutes*6+"deg)";
+            hour.style.transform="rotate("+hours*6*5+"deg)";
+        },1000)
+
+    };
+</script>
+</body>
+</html>

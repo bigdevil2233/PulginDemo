@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            position:relative;
+            display:block;
+            width:200px;
+            height:200px;
+            margin:50px auto;
+            border-radius: 100px;
+            /*transparent在这里是透明的，以此使after中的边框显示出来*/
+            border: 10px solid transparent;
+            /*这里的background是中心的颜色*/
+            background:white;
+            /*background:linear-gradient(45deg,orange,violet);*/
+            /*规定背景的绘制区域：background-clip*/
+
+            background-clip: padding-box;
+            /*padding: 10px;*/
+
+            box-sizing: border-box;
+            /*background:white;*/
+
+        }
+        .box:after{
+            /*after是在元素后添加的效果，可参考clearfix:after*/
+            position:absolute;
+            /*这里使用负值是为了使得添加after的元素在原元素的外边，
+                如果使用正值，添加的元素就会在原元素的里面，又因为after
+                的效果处于下层，所以会被上层background盖住*/
+
+            left:-10px;
+            top:-10px;
+            right:-10px;
+            bottom:-10px;
+
+            background:linear-gradient(45deg,red,blue);
+            content:"";
+            /*z-index用来堆叠元素，-1使得after的效果处于下层，但上层border*/
+                /*进行了透明处理，上层主元素设定了white，*/
+                /*这里的元素比原元素大，就会显示出一圈。*/
+            z-index: -1;
+            border-radius: 100px;
+
+        }
+        .box2{
+            position:relative;
+            width:200px;
+            height:200px;
+            margin:0 auto;
+            border-radius: 100px;
+            background:linear-gradient(45deg,blue,red);
+            transition:1s linear;
+            box-sizing: border-box;
+            box-shadow:inset -3px -3px 10px 0 black;
+        }
+        .box2-gradient{
+            position:absolute;
+            left:20px;
+            top:20px;
+
+            width:160px;
+            height:160px;
+            border-radius:80px;
+
+            background:white;
+
+        }
+        .box2:hover{
+            transform:rotate(180deg);
+
+        }
+        .test01{
+            width:100px;
+            height:50px;
+            background-color: #dddddd;
+            border:2px solid black;
+            border-radius:50px;
+            box-sizing:border-box;
+            text-align:center;
+            line-height: 50px;
+            font-family: Arial;
+            font-size:12px;
+            outline:none;
+        }
+        .testOnclick{
+            background-color: #3aa2e4;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <div class="box2">
+        <div class="box2-gradient"></div>
+    </div>
+    <button class="test01">
+        这是圆角矩形~
+    </button>
+    <script type="text/javascript">
+        window.onload=function(){
+            var test01=document.querySelector(".test01");
+            test01.onmousedown=function(){
+                test01.classList.add("testOnclick");
+            };
+            test01.onmouseup=function(){
+                test01.classList.remove("testOnclick");
+            };
+
+
+        };
+    </script>
+</body>
+</html>

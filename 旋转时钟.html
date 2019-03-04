@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            text-decoration: none;
+        }
+        #clockTool{
+            width: 200px;
+            height: 200px;
+
+            /*3d属性要加在父元素上，不加在子元素*/
+            transform-style:preserve-3d;
+            position:relative;
+
+            margin:190px auto 0;
+            transform-origin:100px 100px -100px;
+            transition:1s linear;
+            /*transform:rotateY(-60deg) rotateX(15deg);*/
+        }
+
+        .clockBox{
+            width:200px;
+            height: 200px;
+            /*background-color: coral;*/
+
+            background-color: rgba(255,0,0,.6);
+            top:-200px;
+            transform-origin: bottom;
+            transform:rotateX(90deg);
+        }
+        div{
+            width: 200px;
+            height:200px;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        div:nth-child(2){
+            background-color: rgba(0,255,0,.6);
+            left:200px;
+            transform-origin:left;
+            transform:rotateY(90deg);
+        }
+        div:nth-child(3){
+            background-color: rgba(0,255,255,.6);
+            top:200px;
+            transform-origin:top;
+            transform:rotateX(-90deg);
+        }
+        div:nth-child(4){
+            background-color: rgba(255,255,0,.6);
+            left:-200px;
+            transform-origin:right;
+            transform:rotateY(-90deg);
+        }
+        div:nth-child(5){
+            background-color: rgba(255,0,255,.6);
+            /*top:100px;*/
+            /*transform-origin:top;*/
+            /*perspective:100px;*/
+            transform:translateZ(-200px) rotateY(180deg);
+        }
+        div:nth-child(6){
+            background-color: rgba(122,255,122,.6);
+        }
+        #clockHead{
+            position: relative;
+            left:99px;
+        }
+        #clockHead li {
+            width: 2px;
+            height: 6px;
+            background-color: black;
+            position: absolute;
+            transform-origin: 1px 100px;
+        }
+        #clockHead li:nth-child(5n+1){
+            height: 10px;
+        }
+        #second{
+            width:2px;
+            height:80px;
+            background-color: red;
+
+            position:absolute;
+            left:99px;
+            top:20px;
+
+            transform-origin:bottom;
+        }
+        #minute{
+            width:2px;
+            height:60px;
+            background-color: black;
+
+            position:absolute;
+            left:99px;
+            top:40px;
+
+            transform-origin:bottom;
+        }
+        #hour{
+            width:4px;
+            height:40px;
+            background-color: black;
+
+            position:absolute;
+            left:98px;
+            top:60px;
+
+            transform-origin:bottom;
+        }
+    </style>
+</head>
+<body>
+<div id="clockTool">
+    <div class="clockBox">
+        <ul id="clockHead">
+            <!--<li></li>-->
+        </ul>
+        <div id="second"></div>
+        <div id="minute"></div>
+        <div id="hour"></div>
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+    <script type="text/javascript">
+        window.onload=function(){
+            var ulDom=document.querySelector("#clockHead");
+            for(var i=0;i<60;i++){
+                var obj=document.createElement("li");
+                obj.style.transform="rotate("+i*6+"deg)";
+                ulDom.appendChild(obj);
+            }
+            var seconds=document.querySelector("#second");
+            var minutes=document.querySelector("#minute");
+            var hours=document.querySelector("#hour");
+
+            setInterval(function(){
+                var currentDate=new Date();
+                var secondsDate=currentDate.getSeconds();
+                var minutesDate=currentDate.getMinutes();
+                minutesDate=minutesDate+(secondsDate/60.00);
+                var hoursDate=currentDate.getHours();
+                hoursDate=hoursDate+(minutesDate/60.00);
+
+                seconds.style.transform="rotate("+secondsDate*6+"deg)";
+                minutes.style.transform="rotate("+minutesDate*6+"deg)";
+                hours.style.transform="rotate("+hoursDate*6*5+"deg)";
+
+            },1000);
+            var clockTool=document.querySelector("#clockTool");
+            var i=1;
+            setInterval(function(){
+                clockTool.style.transform="rotateX("+i*30+"deg) rotateY("+i*15+"deg)";
+                i++;
+                console.log(i);
+            },1000);
+        };
+
+    </script>
+</body>
+</html>
